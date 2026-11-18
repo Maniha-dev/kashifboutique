@@ -170,7 +170,7 @@ function render(){var p=sp,f=p*(N-1),i=Math.floor(f),a=f-i,A=imgs[i],B=imgs[Math
 $("bar").style.width=p*100+"%";$("hint").style.opacity=tg>.03?0:1;
 CH.forEach(function(c){c.classList.toggle("on",p>=+c.dataset.a&&p<+c.dataset.b)});
 if(!A||!A.complete||!A.naturalWidth)return;var W=cv.width,H=cv.height,s=Math.max(W/A.width,H/A.height),w=A.width*s,h=A.height*s,fx=.5+.2*Math.min(1,p*2.2),x=-(w-W)*fx,y=-(h-H)/2,r=W/H,k=Math.max(0,Math.min(1,(1.5-r)/.6));if(k>0){var c=FX[i]*(1-a)+FX[Math.min(N-1,i+1)]*a,xc=Math.min(0,Math.max(W-w,W/2-c*w));x=x*(1-k)+xc*k}
-cx.globalAlpha=1;cx.drawImage(A,x,y,w,h);if(a>.02&&B&&B.complete&&B.naturalWidth){cx.globalAlpha=a;cx.drawImage(B,x,y,w,h);cx.globalAlpha=1}}
+cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality="high";cx.globalAlpha=1;cx.drawImage(A,x,y,w,h);if(a>.02&&B&&B.complete&&B.naturalWidth){cx.globalAlpha=a;cx.drawImage(B,x,y,w,h);cx.globalAlpha=1}}
 function loop(){sp+=(tg-sp)*.09;if(Math.abs(tg-sp)<.0003)sp=tg;render();if(sp!==tg)requestAnimationFrame(loop);else run=false}
 function paint(){tg=prog();$("hd").classList.toggle("solid",tg>=.995||pageYOffset>$("scrub").offsetHeight-innerHeight-10);if(!run){run=true;requestAnimationFrame(loop)}}
 addEventListener("scroll",paint,{passive:true});addEventListener("resize",fit);
